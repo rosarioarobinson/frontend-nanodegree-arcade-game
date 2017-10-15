@@ -7,6 +7,7 @@ var Enemy = function(x, y) {
     this.x = x;
     this.y = y;
     this.sprite = 'images/enemy-bug.png';
+    this.speed = Math.floor(Math.random()* 400);
 };
 
 // Update the enemy's position, required method for game
@@ -15,18 +16,32 @@ Enemy.prototype.update = function(dt) {
     // You should multiply any movement by the dt parameter
     // which will ensure the game runs at the same speed for
     // all computers.
-    //this.move();
+    this.x = this.speed;
+    if (this.x >500){
+     this.reset();
+   }
+//this.checkCollisions();
+   };
     //this.checkCollisions();
 
-    //if (this.x >500){
-    //  this.x = Enemy.rest();
-    }
-    //this.x += 1;
+    //}
 //};
-Enemy.prototype.rests = function (){
-  this.x = -100;
-  this.y = 0;
-}
+
+Enemy.prototype.checkCollisions = function(){
+     if(player.x < this.x + this.width &&
+        player.x + player.width > this.x &&
+        player.y < this.y + this.height &&
+        player.height + player.y > this.y){
+          console.log("collision!!");
+          player.x = 215;
+          player.y = 400;
+        }
+        return "banana"  // <-- add unnecessary return to show that function is being accessed correctly
+};
+
+Enemy.prototype.reset = function() {
+  this.speed = Math.floor(Math.random() * 400);
+};
 
 // Draw the enemy on the screen, required method for game
 Enemy.prototype.render = function() {
@@ -43,7 +58,12 @@ var Player = function(x, y){
   this.x = x;
   this.y = y;
   this.sprite = 'images/char-boy.png';
+  enemyWidth = 50;
+  enemyHeight = 60;
+  playerWidth = 40;
+  playerHeight = 55;
 };
+
 
 Player.prototype.update = function(dt){
   if (this.y == -10){
@@ -53,6 +73,30 @@ Player.prototype.update = function(dt){
     this.x = 400
   }
 };
+
+Player.prototype.checkCollisions = function(x,y){
+  var enemy = x;
+  var enemy = y;
+  if(player.x < this.x + this.width &&
+     player.x + player.width > this.x &&
+     player.y < this.y + this.height &&
+     player.height + player.y > this.y){
+       console.log("collision!!");
+       player.x = 215;
+       player.y = 400;
+     }
+     return "banana"  // <-- add unnecessary return to show that function is being accessed correctly
+};
+
+//Player.prototype.reset=function(){
+  //this.x=
+  //this.y=
+//};
+
+//**Player.prototype.resetPlayer = function(){
+  //this.x = ;
+  //this.y = ;
+//}
 
 Player.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
@@ -74,7 +118,7 @@ Player.prototype.handleInput = function(direction) {
   }
 };
 
-
+}
 
 
 // Now instantiate your objects.
