@@ -6,8 +6,8 @@ var Enemy = function(x, y) {
     // a helper we've provided to easily load images
     this.x = x;
     this.y = y;
-    this.width = 250;
-    this.height = 400;
+    //this.width = 250;
+    //this.height = 400;
     this.sprite = 'images/enemy-bug.png';
     this.speed = Math.floor(Math.random()* 250) ;
 };
@@ -61,8 +61,8 @@ var Player = function(x, y){
   this.x = 250;
   this.y = 400;
   this.sprite = 'images/char-boy.png';
-  this.width = 150;
-  this.height = 300;
+  this.width = 50;
+  this.height = 50;
   //playerWidth = 40;
   //playerHeight = 55;
 };
@@ -104,19 +104,19 @@ Player.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
 
-//added prototype.handleInput to make enemies move.
+//added prototype.handleInput to make player move.
 Player.prototype.handleInput = function(direction) {
   if (direction === "up") {
-    this.y -= this.y - 250;
+    this.y = this.y - 50;
   }
   if (direction === "down") {
-    this.y += this.y + 250;
+    this.y = this.y + 50;
   }
   if (direction === "left") {
-    this.x -= this.x - 150;
+    this.x = this.x - 50;
   }
   if (direction === "right") {
-    this.x += this.x + 150;
+    this.x = this.x + 50;
   }
 };
 
