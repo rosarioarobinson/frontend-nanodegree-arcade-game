@@ -31,7 +31,7 @@ Enemy.prototype.checkCollisions = function(){
         player.x + player.width > this.x &&
         player.y < this.y + this.height &&
         player.height + player.y > this.y){
-          console.log("collision!!");
+          console.log("collision!");
           player.x = 215;
           player.y = 400;
         }
@@ -60,19 +60,19 @@ var Player = function(x, y){
   this.x = x;
   this.y = y;
   this.sprite = 'images/char-boy.png';
-  enemyWidth = 50;
-  enemyHeight = 60;
-  playerWidth = 40;
-  playerHeight = 55;
+  this.width = 250;
+  this.height = 400;
+  //playerWidth = 40;
+  //playerHeight = 55;
 };
 
 
 Player.prototype.update = function(dt){
-  if (this.y == -10){
-    this.y = 400
+  if (this.y == 100){
+    this.y = 40
   }
-  if (this.x == -10){
-    this.x = 400
+  if (this.x == 100){
+    this.x = 40
   }
 };
 
@@ -83,22 +83,18 @@ Player.prototype.checkCollisions = function(x,y){
      player.x + player.width > this.x &&
      player.y < this.y + this.height &&
      player.height + player.y > this.y){
-       console.log("collision!!");
-       player.x = 215;
+       console.log("collision!");
+       player.x = 250;
        player.y = 400;
      }
      return "hit"  // <-- add unnecessary return to show that function is being accessed correctly
 };
 
-//Player.prototype.reset=function(){
-  //this.x=
-  //this.y=
-//};
+Player.prototype.reset=function(){
+  this.x=100;
+  this.y=400;
+};
 
-//**Player.prototype.resetPlayer = function(){
-  //this.x = ;
-  //this.y = ;
-//}
 
 Player.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
