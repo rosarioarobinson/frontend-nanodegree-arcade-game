@@ -6,8 +6,10 @@ var Enemy = function(x, y) {
     // a helper we've provided to easily load images
     this.x = x;
     this.y = y;
+    this.width = 250;
+    this.height = 400;
     this.sprite = 'images/enemy-bug.png';
-    this.speed = Math.floor(Math.random()* 400);
+    this.speed = Math.floor(Math.random()* 250) + 20;
 };
 
 // Update the enemy's position, required method for game
@@ -16,16 +18,13 @@ Enemy.prototype.update = function(dt) {
     // You should multiply any movement by the dt parameter
     // which will ensure the game runs at the same speed for
     // all computers.
-    this.x = this.speed;
+    this.x += this.speed * dt;
     if (this.x >500){
      this.reset();
    }
-//this.checkCollisions();
+this.checkCollisions();
    };
-    //this.checkCollisions();
 
-    //}
-//};
 
 Enemy.prototype.checkCollisions = function(){
      if(player.x < this.x + this.width &&
@@ -36,11 +35,14 @@ Enemy.prototype.checkCollisions = function(){
           player.x = 215;
           player.y = 400;
         }
-        return "banana"  // <-- add unnecessary return to show that function is being accessed correctly
+        return "hit"  // <-- add unnecessary return to show that function is being accessed correctly
 };
 
 Enemy.prototype.reset = function() {
-  this.speed = Math.floor(Math.random() * 400);
+  this.x = -100;
+  this.y = 40;
+  this.row =
+  this.speed = Math.floor(Math.random() * 300) + 20;
 };
 
 // Draw the enemy on the screen, required method for game
@@ -85,7 +87,7 @@ Player.prototype.checkCollisions = function(x,y){
        player.x = 215;
        player.y = 400;
      }
-     return "banana"  // <-- add unnecessary return to show that function is being accessed correctly
+     return "hit"  // <-- add unnecessary return to show that function is being accessed correctly
 };
 
 //Player.prototype.reset=function(){
