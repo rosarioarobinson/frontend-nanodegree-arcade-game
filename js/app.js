@@ -9,7 +9,7 @@ var Enemy = function(x, y) {
     this.width = 250;
     this.height = 400;
     this.sprite = 'images/enemy-bug.png';
-    this.speed = Math.floor(Math.random()* 250) + 20;
+    this.speed = Math.floor(Math.random()* 250) ;
 };
 
 // Update the enemy's position, required method for game
@@ -35,6 +35,7 @@ Enemy.prototype.checkCollisions = function(){
           player.x = 215;
           player.y = 400;
         }
+
         return "hit"  // <-- add unnecessary return to show that function is being accessed correctly
 };
 
@@ -42,7 +43,7 @@ Enemy.prototype.reset = function() {
   this.x = -100;
   this.y = 40;
   this.row =
-  this.speed = Math.floor(Math.random() * 300) + 20;
+  this.speed = Math.floor(Math.random() * 300);
 };
 
 // Draw the enemy on the screen, required method for game
@@ -57,23 +58,25 @@ Enemy.prototype.render = function() {
 
 
 var Player = function(x, y){
-  this.x = x;
-  this.y = y;
+  this.x = 250;
+  this.y = 400;
   this.sprite = 'images/char-boy.png';
-  this.width = 250;
-  this.height = 400;
+  this.width = 150;
+  this.height = 300;
   //playerWidth = 40;
   //playerHeight = 55;
 };
 
 
 Player.prototype.update = function(dt){
+
   if (this.y == 100){
-    this.y = 40
+    this.y = 100
   }
   if (this.x == 100){
     this.x = 40
   }
+
 };
 
 Player.prototype.checkCollisions = function(x,y){
@@ -87,10 +90,11 @@ Player.prototype.checkCollisions = function(x,y){
        player.x = 250;
        player.y = 400;
      }
+
      return "hit"  // <-- add unnecessary return to show that function is being accessed correctly
 };
 
-Player.prototype.reset=function(){
+Player.prototype.reset = function(){
   this.x=100;
   this.y=400;
 };
@@ -103,16 +107,16 @@ Player.prototype.render = function() {
 //added prototype.handleInput to make enemies move.
 Player.prototype.handleInput = function(direction) {
   if (direction === "up") {
-    this.y = this.y - 50;
+    this.y -= this.y - 250;
   }
   if (direction === "down") {
-    this.y = this.y + 50;
+    this.y += this.y + 250;
   }
   if (direction === "left") {
-    this.x = this.x - 50;
+    this.x -= this.x - 150;
   }
   if (direction === "right") {
-    this.x = this.x + 50;
+    this.x += this.x + 150;
   }
 };
 
